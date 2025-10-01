@@ -15,21 +15,18 @@ A beautiful and responsive pet adoption website built with HTML, CSS, and JavaSc
 
 ### Core Files (Required for deployment)
 - `index.html` - Homepage
-- `search.html` - Pet search page (converted from search.php)
-- `shop.html` - Shop page (converted from shop.php)
-- `cart.html` - Shopping cart page (converted from cart.php)
-- `contact.html` - Contact us page (converted from contact us.php)
-- `services.html` - Services page (converted from services.php)
-- `login.html` - Login page (converted from login.php)
-- `register.html` - Registration page (converted from register.php)
+- `search.html` - Pet search page 
+- `shop.html` - Shop page 
+- `cart.html` - Shopping cart page
+- `contact.html` - Contact us page 
+- `services.html` - Services page
+- `login.html` - Login page
+- `register.html` - Registration page
 - `adoption_details.html` - Pet adoption details page
 - `common.css` - Shared styles
 - `common.js` - Shared JavaScript functions
 - `data/` - Directory containing all images and media files
 
-### Deployment Files
-- `vercel.json` - Vercel deployment configuration
-- `README.md` - This file
 
 ## Deployment Instructions
 
@@ -68,14 +65,6 @@ To run locally:
    - Python: `python -m http.server 8000`
    - Node.js: `npx serve`
 
-## Notes
-
-- This is a static website (no backend database)
-- All pet data is hardcoded in HTML
-- Cart functionality uses localStorage
-- Contact form shows alerts (no actual email sending)
-- Images are stored in the `data/` directory
-
 ## Browser Compatibility
 
 - Chrome (recommended)
@@ -84,5 +73,6 @@ To run locally:
 - Edge
 
 ## Credits
+
 
 Created for pet adoption and animal welfare purposes.
