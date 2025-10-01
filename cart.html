@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdoptaFurryBuddy - Cart</title>
+    <link rel="stylesheet" href="common.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        .container {
+            max-width: 2000px;
+            margin: 10 auto;
+            padding: 5px;
+            border-radius: 8px;
+            box-sizing: border-box;
+        }
+
+        .header, .top-section {
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 40px 40px;
+            border-radius: 10px;
+            background-color: #744f32;
+        }
+        
+        h1 {
+            font-size: 36px;
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        nav {
+            background-color: #382e27;
+            padding: 10px 50px;
+            text-align: center;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        nav .left-links,
+        nav .right-links {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.2em;
+        }
+
+        main {
+            padding: 20px;
+            text-align: center;
+        }
+
+        footer {
+            background-color: #382e27;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 500px;
+            border-radius: 8px;
+        }
+
+        footer p {
+            margin: 0;
+        }
+        
+        .cart-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .cart-item {
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .cart-item p {
+            margin: 0;
+        }
+
+        .cart-item-info {
+            flex: 1;
+            text-align: left;
+            padding: 0 15px;
+        }
+
+        .cart-item-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .cart-item-details h3 {
+            color: #744f32;
+            margin-bottom: 5px;
+        }
+
+        .cart-item-price {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #4CAF50;
+        }
+
+        #clear-cart {
+            background-color: #af784c;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+        }
+
+        #clear-cart:hover {
+            background-color: #744f32;
+        }
+
+        .cart-item button {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 8px 15px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .cart-item button:hover {
+            background-color: #c82333;
+        }
+
+        .cart-total {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #744f32;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .empty-cart {
+            text-align: center;
+            padding: 50px;
+            color: #666;
+        }
+
+        .empty-cart h2 {
+            color: #888;
+            margin-bottom: 20px;
+        }
+
+        .checkout-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            margin-top: 20px;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+
+        .checkout-btn:hover {
+            background-color: #45a049;
+        }
+
+        .checkout-btn:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>Shopping Cart</h1>
+    </div>
+
+    <nav>
+        <div class="left-links">
+            <a href="index.html">Home</a>
+            <a href="contact.html">Contact Us</a>
+            <a href="shop.html">Shop Items</a>
+            <a href="search.html">Search for Pets</a>
+            <a href="services.html">Our Services</a>
+        </div>
+        <div class="right-links">
+            <a href="login.html">Login</a>
+            <a href="register.html">Register</a>
+            <a href="cart.html">Cart <span id="cart-count">0</span></a>
+        </div>
+    </nav>
+
+    <main>
+        <div class="cart-container">
+            <div id="cart-items"></div>
+            <div class="cart-total">
+                Total: ₹<span id="cart-total">0</span>
+            </div>
+            <button id="checkout-btn" class="checkout-btn" onclick="checkout()">Proceed to Checkout</button>
+            <button id="clear-cart">Clear Cart</button>
+        </div>
+    </main>
+
+    <footer>
+        <p>Contact Us: contact@adoptafurrybuddy.com</p>
+    </footer>
+
+    <script>
+        const petImages = {
+            // Dogs
+            'Chotu': 'data/dog.jpg',
+            'Elsa': 'data/dog8.jpg',
+            'Miku': 'data/dog7.jpg',
+            'Hope': 'data/dog4.jpg',
+            'Buddy': 'data/dog5.jpg',
+            'Luna': 'data/dog6.jpg',
+            'Rocky': 'data/dog9.jpg',
+            'Bella': 'data/dog4.jpg',
+            'Max': 'data/dog3.jpg',
+            'Charlie': 'data/dog2.jpg',
+            'Daisy': 'data/dog6.jpg',
+            
+            // Cats
+            'Verna': 'data/cat.jpg',
+            'Kita': 'data/cat6.jpg',
+            'Caramel & Ginger': 'data/cat4.jpg',
+            'Simba': 'data/cat5.jpg',
+            'Whiskers': 'data/cat7.jpg',
+            'Mittens': 'data/cat8.jpg',
+            'Shadow': 'data/cat9.jpg',
+            'Smokey': 'data/cat5.jpg',
+            
+            // Other Animals
+            'Sleepy': 'data/ss.jpg',
+            'Bouncy': 'data/bb.jpg',
+            'Rabii': 'data/ar.jpg',
+            'Mitu': 'data/pp.jpg',
+            'Happy': 'data/hh.jpg',
+            'Shelly': 'data/turtle.jpg',
+            'Peanut': 'data/guinea.jpg',
+            'Bandit': 'data/ferret.jpg',
+            'Spike': 'data/lizard.jpg',
+            
+            // Shop Items
+            'Premium Dog Food': 'data/bfood.jpg',
+            'Organic Cat Food': 'data/catfood.jpg',
+            'Cat Food Bowl': 'data/co.jpg',
+            'Dog Collar': 'data/belt.jpg',
+            'Pet Clothing': 'data/clothes.jpg',
+            'Pet Sanitizer': 'data/sanitizer.jpg',
+            'Bird Cage': 'data/cage.jpg',
+            'Pet Tent': 'data/tent.jpeg',
+            'Dog Leash': 'data/belt2.jpg',
+            'Cat Scratching Post': 'data/scratchpost.jpg',
+            'Pet Carrier': 'data/carrier.jpg',
+            'Dog Bed': 'data/dogbed.jpg',
+            'Water Fountain': 'data/waterfountain.jpg',
+            'Aquarium': 'data/aquarium.jpg'
+        };
+
+        function updateCartUI() {
+            const cartItemsList = document.getElementById('cart-items');
+            const cartTotal = document.getElementById('cart-total');
+            const checkoutBtn = document.getElementById('checkout-btn');
+            
+            cartItemsList.innerHTML = '';
+            let total = 0;
+
+            let cart = localStorage.getItem('cart');
+            cart = cart ? JSON.parse(cart) : [];
+
+            if (cart.length === 0) {
+                cartItemsList.innerHTML = `
+                    <div class="empty-cart">
+                        <h2>Your cart is empty</h2>
+                        <p>Add some furry friends to your cart to get started!</p>
+                        <br>
+                        <a href="search.html" style="color: #4CAF50; text-decoration: none; font-weight: bold;">Browse Pets →</a>
+                    </div>
+                `;
+                checkoutBtn.disabled = true;
+            } else {
+                checkoutBtn.disabled = false;
+                
+                cart.forEach((item, index) => {
+                    const itemContainer = document.createElement('div');
+                    itemContainer.classList.add('cart-item');
+                    
+                    const image = petImages[item.name] || 'data/dog.jpg';
+                    
+                    itemContainer.innerHTML = `
+                        <img src="${image}" alt="${item.name}" class="cart-item-image">
+                        <div class="cart-item-info">
+                            <div class="cart-item-details">
+                                <h3>${item.name}</h3>
+                                <p>Ready for adoption</p>
+                            </div>
+                        </div>
+                        <div class="cart-item-price">₹${item.price.toFixed(2)}</div>
+                        <button onclick="deleteItem(${index})">Remove</button>
+                    `;
+                    
+                    cartItemsList.appendChild(itemContainer);
+                    total += item.price;
+                });
+            }
+
+            cartTotal.textContent = total.toFixed(2);
+        }
+
+        function deleteItem(index) {
+            let cart = localStorage.getItem('cart');
+            cart = cart ? JSON.parse(cart) : [];
+            cart.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartUI();
+            updateCartCount();
+        }
+
+        function checkout() {
+            const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            if (cart.length === 0) return;
+            
+            // Check if user is logged in
+            const user = localStorage.getItem('user');
+            if (!user) {
+                alert('Please login to proceed with checkout.');
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            // Simulate checkout process
+            alert(`Checkout successful! Total: ₹${cart.reduce((sum, item) => sum + item.price, 0).toFixed(2)}\n\nThank you for choosing AdoptaFurryBuddy! We will contact you soon about your adoption applications.`);
+            
+            // Clear cart after successful checkout
+            localStorage.removeItem('cart');
+            updateCartUI();
+            updateCartCount();
+        }
+
+        document.getElementById('clear-cart').addEventListener('click', () => {
+            if (confirm('Are you sure you want to clear your cart?')) {
+                localStorage.removeItem('cart');
+                updateCartUI();
+                updateCartCount();
+            }
+        });
+
+        function updateCartCount() {
+            let cart = localStorage.getItem('cart');
+            cart = cart ? JSON.parse(cart) : [];
+            const cartCount = cart.length;
+            document.getElementById('cart-count').innerText = cartCount;
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCartUI();
+            updateCartCount();
+        });
+    </script>
+</body>
+</html>

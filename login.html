@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdoptaFurryBuddy - Login</title>
+    <link rel="stylesheet" href="common.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        main {
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 36px;
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+        
+        form {
+            width: 300px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        fieldset {
+            border: none;
+            padding: 0;
+            margin: 0;
+            margin-bottom: 20px;
+        }
+
+        legend {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: calc(100% - 10px);
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+            background-color: #f9f9f9;
+        }
+
+        input[type="checkbox"] {
+            text-align: center;
+            margin-left:20px;
+            padding:12px 20px;
+        }
+
+        .remember-me {
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        button {
+            background-color: #af784c;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #a07145;
+        }
+
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        p {
+            font-size: 0.9em;
+        }
+
+        a {
+            color: #744f32;
+            text-decoration: none;
+        }
+
+        footer {
+            background-color: #382e27;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 100px;
+            border-radius: 8px;
+            width: 100%;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        nav {
+            background-color:#382e27;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.2em;
+        }
+
+        nav .left-links,
+        nav .right-links {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .container {
+            max-width: 2000px;
+            margin: 10 auto;
+            padding: 5px;
+            border-radius:8px;
+            box-sizing: border-box;
+        }
+
+        .header, .top-section {
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 40px 40px;
+            border-radius: 10px;
+            background-color: #744f32;
+        }
+
+        .link-container {
+            text-align: center;
+            margin-top: 10px;
+        }
+        
+        .link-container a {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .cart-count {
+            color: #fff;
+            background-color: #ff0000;
+            padding: 2px 5px;
+            border-radius: 50%;
+            font-size: 12px;
+            margin-left: 5px;
+        }
+
+        .msg {
+            color: red;
+        }
+
+        input[type="email"]:invalid,
+        input[type="password"]:invalid {
+            border-color: red;
+        }
+
+        .login-container {
+            max-width: 360px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .login-container h1 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .login-container input[type="email"],
+        .login-container input[type="text"],
+        .login-container input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .login-container button {
+            background-color:#744f32;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+
+        .login-container button:hover {
+            background-color: #a07145;
+        }
+
+        .login-container .error-msg {
+            color: red;
+            margin-top: 10px;
+        }
+
+        .loading {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <div class="header">
+        <h1>Login</h1>
+    </div>
+
+    <div class="login-container">
+    <fieldset>
+        <form id="loginForm" onsubmit="handleLogin(event)">
+            <label for="username">Username or Email:</label>
+            <input type="text" id="username" name="username" placeholder="Username or Email" required><br>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" placeholder="Password" required><br>
+
+            <button type="submit" id="loginButton">
+                <span class="normal">Login</span>
+                <span class="loading">Logging in...</span>
+            </button>
+        </form>
+
+        <div style="display:inline-block; justify-content: space-between;">
+            <label for="remember_me">Remember Me:</label>
+            <input type="checkbox" id="remember_me" name="remember_me">
+        </div>
+        
+        <div id="error-msg" class="error-msg"></div>
+
+        <p class="msg"></p>
+    </fieldset>
+    
+    <div class="link-container">
+        <a href="forgot_password.html">Forgot your password?</a>
+        <a href="register.html">Don't have an account? Sign Up</a>
+        <a href="index.html">Back to Home</a>
+    </div>
+    </div>
+    <br>
+
+    <!-- Configuration -->
+    <script>
+        // API Configuration
+        const API_BASE_URL = 'http://localhost:8080/api';
+        // For production, use: const API_BASE_URL = 'https://your-render-app.onrender.com/api';
+    </script>
+
+    <!-- User Authentication Script -->
+    <script src="js/auth.js"></script>
+    
+    <script>
+        async function handleLogin(event) {
+            event.preventDefault();
+            
+            const loginButton = document.getElementById('loginButton');
+            const errorDiv = document.getElementById('error-msg');
+            const normalSpan = loginButton.querySelector('.normal');
+            const loadingSpan = loginButton.querySelector('.loading');
+            
+            // Clear previous errors
+            errorDiv.textContent = '';
+            
+            // Get form data
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            // Validation
+            if (!username || !password) {
+                errorDiv.textContent = 'Please fill in all fields';
+                return;
+            }
+            
+            // Show loading state
+            loginButton.disabled = true;
+            normalSpan.style.display = 'none';
+            loadingSpan.style.display = 'inline';
+            
+            try {
+                if (authService) {
+                    // Use API
+                    const response = await authService.login(username, password);
+                    alert('Login successful!');
+                    window.location.href = 'index.html';
+                } else {
+                    // Fallback for when backend is not available
+                    console.warn('Backend not available, using fallback login');
+                    
+                    // Simple client-side validation (for demo purposes)
+                    if (username === 'demo@example.com' && password === 'password') {
+                        const demoUser = {
+                            id: 1,
+                            username: 'demo',
+                            email: 'demo@example.com'
+                        };
+                        localStorage.setItem('user', JSON.stringify(demoUser));
+                        alert('Login successful! (Demo mode)');
+                        window.location.href = 'index.html';
+                    } else {
+                        throw new Error('Invalid credentials. Try demo@example.com / password');
+                    }
+                }
+            } catch (error) {
+                errorDiv.textContent = error.message || 'Login failed. Please try again.';
+            } finally {
+                // Reset loading state
+                loginButton.disabled = false;
+                normalSpan.style.display = 'inline';
+                loadingSpan.style.display = 'none';
+            }
+        }
+
+        // Username validation
+        const usernameInput = document.getElementById('username');
+        let validUsername = false;
+        usernameInput.addEventListener('input', onUsernameInput);
+
+        function onUsernameInput(event) {
+            validUsername = event.target.value.length > 3;
+            usernameInput.style.borderColor = validUsername ? 'green': 'red';
+        }
+
+        // Password validation
+        const passwordInput = document.getElementById('password');
+        let validPassword = false;
+        passwordInput.addEventListener('input', onPasswordInput);
+
+        function onPasswordInput(event) {
+            validPassword = event.target.value.length >= 6;
+            passwordInput.style.borderColor = validPassword ? 'green': 'red';
+        }
+
+        // Check if user is already logged in
+        document.addEventListener('DOMContentLoaded', function() {
+            if (isLoggedIn()) {
+                window.location.href = 'index.html';
+            }
+        });
+    </script>
+
+    <footer>
+        <p>Contact Us: contact@adoptafurrybuddy.com</p>
+    </footer>
+
+</body>
+</html>

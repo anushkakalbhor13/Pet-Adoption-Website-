@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdoptaFurryBuddy! - Home</title>
+    <link rel="stylesheet" href="common.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f0f0;
+            color: #333;
+        }
+
+        header {  
+            background-color: #744f32;
+            padding: 20px;
+            text-align: center;
+            color: #fff;
+        }
+
+        nav {
+            background-color: #382e27;
+            padding: 10px 50px;
+            text-align: center;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        nav .left-links,
+        nav .right-links {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.2em;
+        }
+
+        main {
+            padding: 17px;
+            text-align: center;
+        }
+
+        .container2 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .left-content,
+        .middle-content,
+        .right-content {
+            max-width: 2000px;
+            border-radius: 9px; 
+        }
+
+        .left-content {
+            padding:10px;
+            flex: 0 0 15%;
+            background-color:#bbafaf;
+            margin-right: 8px; 
+        }
+
+        .middle-content {
+            padding:10px;
+            flex: 0 0 58%;
+            background-color:#382e27;
+            margin-right: 8px; 
+        }
+
+        .right-content {
+            padding:10px;
+            flex: 0 0 22%;
+            background-color:#f1f1f1;
+            margin-top: 20px;
+        }
+
+        .middle-content {
+            border: 2px solid #ddd;
+        }
+
+        .popular-categories h2 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            padding-left: 0%;
+        }
+
+        .pet {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .pet img {
+            width: 600px;
+            height: 500px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .pet:hover img {
+            transform: scale(1.05);
+        }
+
+        .pet-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 10px;
+            box-sizing: border-box;
+            transition: bottom 0.3s ease-in-out;
+        }
+
+        .pet:hover .pet-info {
+            bottom: -50px;
+        }
+
+        .pet-info h3, .pet-info p {
+            margin: 5px 0;
+        }
+
+        button {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .tip-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .tip {
+            flex: 0 0 calc(33.33% - 10px); 
+            margin-bottom: 20px;
+            background-color: #4681ab;
+            padding: 50px;
+            border-radius: 8px;
+            color: #fff;
+            box-shadow: 3px 7px 8px rgba(13, 4, 4, 0.2); 
+        }
+
+        .tip:nth-child(odd) {
+            background-color: #b1677c;
+        }
+
+        .tip:hover {
+            transform: translateY(-20px); 
+        }
+
+        footer {
+            background-color: #382e27;
+            color: #fff;
+            text-align: center;
+            padding: 15px 0;
+            margin-top: 20px;
+            border-radius: 8px;
+            width: 100%;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        p {
+            font-size: 1.1em;
+            margin-bottom: 20px;
+        }
+        
+        h1 {
+            color:#fff;
+        }
+        
+        h2 {
+            color:#333;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .btn:hover {
+            background-color: #45a049;
+        }
+        
+        .container {
+            max-width: 2000px;
+            margin: 10 auto;
+            padding: 5px;
+            border-radius:8px;
+            box-sizing: border-box;
+        }
+
+        .header, .top-section {
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 40px 40px;
+            border-radius: 10px;
+            background-color: #744f32;
+        }
+
+        .logo {
+            width: 200px;
+            height: auto;
+        }
+        
+        .carousel-container {
+            max-width: 100%;
+            margin: 5px;
+            padding: 5px;
+            background-color: #f1f1f1;
+        }
+        
+        .carousel {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch; 
+            margin-bottom: 20px;
+        }
+        
+        .carousel-item {
+            flex: 0 0 auto;
+            scroll-snap-align: start;
+            margin-right: 8px;
+            border-radius: 8px;
+            padding: 8px; 
+        }
+        
+        .carousel-item img {
+            max-width: 60%;
+            border-radius: 5px;
+        }
+        
+        .video-container {
+            max-width: 800px;
+            margin: 20px auto;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .social-feed {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color:#f9f0f0;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .testimonial-container {
+            max-width: 10000px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color:#bbafaf;
+            border-radius: 5px;
+        }
+        
+        .testimonial {
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            background-color:rgb(60, 49, 49);
+            box-shadow:#333;
+        }
+        
+        .testimonial img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        
+        .testimonial p {
+            margin-bottom: 10px;
+            color:#fff;
+        }
+
+        .social-media-icons {
+            margin-top: 20px;
+        }
+
+        .social-media-icons a {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        .social-media-icons img {
+            width: 40px; 
+            height: 40px;
+            border-radius: 50%; 
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .social-media-icons img:hover {
+            transform: scale(1.1);
+        }
+
+        /* User status styles */
+        .user-info {
+            display: none;
+            color: #fff;
+            font-size: 0.9em;
+        }
+
+        .user-info.logged-in {
+            display: inline-block;
+        }
+
+        .login-logout {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="data/logo1.png" alt="AdoptaFurryBuddy" class="logo" height="300px" width="500px">
+            <h1>Welcome to AdoptaFurryBuddy!</h1>
+        </div>
+
+        <nav>
+            <div class="left-links">
+                <a href="index.html">Home</a>
+                <a href="contact.html">Contact Us</a>
+                <a href="shop.html">Shop Items</a>
+                <a href="search.html">Search for Pets</a>
+                <a href="services.html">Our Services</a>
+            </div>
+            <div class="right-links">
+                <span class="user-info" id="userInfo"></span>
+                <a href="login.html" class="login-logout" id="loginLogout">Login</a>
+                <a href="register.html" id="registerLink">Register</a>
+                <a href="cart.html">Cart <span id="cart-count">0</span></a>
+            </div>
+        </nav>
+
+        <main>
+            <div class="contain">
+                <div class="left-content">
+                    <div class="popular-categories">
+                        <h2>Popular Categories</h2>
+                        <ul type="none">
+                            <li><a href="#dogs-carousel">Dogs</a></li>
+                            <li><a href="#cats-carousel">Cats</a></li>
+                            <li><a href="#birds-carousel">Birds</a></li>
+                            <li><a href="#others-carousel">Others</a></li>
+                            <li><a href="#pet-tips">Pet Care Tips</a></li>
+                            <li><a href="#customer-feedback">Customer Feedback</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <br>
+                <div class="middle-content">
+                    <div class="carousel-container">
+                        <div class="carousel-container" id="dogs-carousel">
+                            <h2>Featured Dogs</h2>
+                            <br>
+                            <div class="carousel">
+                                <div class="carousel-item">
+                                    <div class="pet">
+                                        <img src="data/dog.jpg" alt="Dog 1">
+                                        <div class="pet-info">
+                                            <h3>Chotu</h3>
+                                            <p>Adorable dog looking for a loving home.</p>
+                                            <p> Male, 1 year</p>
+                                        </div>
+                                        <button onclick="redirectToAdoptionDetails('Chotu', '500');" data-id="99" data-name="Chotu" data-price="500">Adopt Me</button>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="pet">
+                                        <img src="data/dog8.jpg" alt="Dog 2">
+                                        <div class="pet-info">
+                                            <h3>Elsa</h3>
+                                            <p>Energetic dog ready to bring joy to your family.</p>
+                                            <p>Female, 4 months old.</p>
+                                        </div>
+                                        <button onclick="redirectToAdoptionDetails('Elsa', '450');" data-id="98" data-name="Elsa" data-price="450">Adopt Me</button>            
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="pet">
+                                        <img src="data/dog7.jpg" alt="Dog 3">
+                                        <div class="pet-info">
+                                            <h3>Miku</h3>
+                                            <p>Loyal companion awaits adoption.</p>
+                                            <p> Female, 12 months old.</p>
+                                        </div>
+                                        <button onclick="redirectToAdoptionDetails('Miku', '500');" data-id="97" data-name="Miku" data-price="500">Adopt Me</button>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="pet">
+                                        <img src="data/dog4.jpg" alt="Dog 4">
+                                        <div class="pet-info">
+                                            <h3>Hope</h3>
+                                            <p>Gentle-hearted pup seeks family.</p>
+                                            <p> Male, 9 months old.</p>
+                                        </div>
+                                        <button onclick="redirectToAdoptionDetails('Hope', '300');" data-id="96" data-name="Hope" data-price="300">Adopt Me</button>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="pet">
+                                        <img src="data/dog5.jpg" alt="Dog 5">
+                                        <div class="pet-info">
+                                            <h3>Buddy</h3>
+                                            <p>Golden Retriever mix, loves fetch and children.</p>
+                                            <p>Male, 2 years old.</p>
+                                        </div>
+                                        <button onclick="redirectToAdoptionDetails('Buddy', '650');" data-id="95" data-name="Buddy" data-price="650">Adopt Me</button>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="pet">
+                                        <img src="data/dog6.jpg" alt="Dog 6">
+                                        <div class="pet-info">
+                                            <h3>Luna</h3>
+                                            <p>Playful Husky with beautiful blue eyes.</p>
+                                            <p>Female, 3 years old.</p>
+                                        </div>
+                                        <button onclick="redirectToAdoptionDetails('Luna', '800');" data-id="94" data-name="Luna" data-price="800">Adopt Me</button>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="pet">
+                                        <img src="data/dog9.jpg" alt="Dog 9">
+                                        <div class="pet-info">
+                                            <h3>Rocky</h3>
+                                            <p>German Shepherd, loyal and protective.</p>
+                                            <p>Male, 4 years old.</p>
+                                        </div>
+                                        <button onclick="redirectToAdoptionDetails('Rocky', '750');" data-id="93" data-name="Rocky" data-price="750">Adopt Me</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+
+                    <div class="carousel-container">
+                        <div class="carousel-container" id="cats-carousel">
+                            <h2>Featured Cats</h2>
+                            <br>
+                            <div class="carousel">
+                                <div class="carousel-item">
+                                    <div class="pet">
+                                        <img src="data/cat.jpg" alt="Cat 1">
+                                        <div class="pet-info">
+                                            <h3>Verna</h3>
+                                            <p>Adorable cat looking for a loving home.</p>
+                                            <p> Female, 1 year old</p>
+                                        </div>
+                                        <button onclick="adopt('Verna')" class="add-to-cart" data-id="94" data-name="Verna" data-price="399">Adopt Me</button>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="pet">
+                                        <img src="data/cat6.jpg" alt="Cat 2">
+                                        <div class="pet-info">
+                                            <h3>Kita</h3>
+                                            <p>Cute cat with a charming personality</p>
+                                            <p>Female, 7 months old.</p>
+                                        </div>
+                                        <button onclick="adopt('Kita')" class="add-to-cart" data-id="93" data-name="Kita" data-price="250">Adopt Me</button>
+                                    </div>
+                                </div>
+
+                                <div class="carousel-item">
+                                    <div class="pet">
+                                        <img src="data/cat4.jpg" alt="Cat 4">
+                                        <div class="pet-info">
+                                            <h3>Caramel & Ginger</h3>
+                                            <p>Affectionate kitties seeks owner..</p>
+                                            <p> Male, 2 years and 5 months old.</p>
+                                        </div>
+                                        <button onclick="adopt('Caramel & Ginger')" class="add-to-cart" data-id="91" data-name="Caramel & Ginger" data-price="700">Adopt Me</button>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="pet">
+                                        <img src="data/cat5.jpg" alt="Cat 5">
+                                        <div class="pet-info">
+                                            <h3>Simba</h3>
+                                            <p>Curious kitten seeks adventure.</p>
+                                            <p>Male, 9 months old</p>
+                                        </div>
+                                        <button onclick="adopt('Simba')" class="add-to-cart" data-id="90" data-name="Simba" data-price="200">Adopt Me</button>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="pet">
+                                        <img src="data/cat7.jpg" alt="Cat 7">
+                                        <div class="pet-info">
+                                            <h3>Whiskers</h3>
+                                            <p>Persian cat with beautiful long fur.</p>
+                                            <p>Female, 2 years old</p>
+                                        </div>
+                                        <button onclick="adopt('Whiskers')" class="add-to-cart" data-id="89" data-name="Whiskers" data-price="600">Adopt Me</button>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="pet">
+                                        <img src="data/cat8.jpg" alt="Cat 8">
+                                        <div class="pet-info">
+                                            <h3>Mittens</h3>
+                                            <p>Tabby cat who loves to cuddle.</p>
+                                            <p>Male, 1.5 years old</p>
+                                        </div>
+                                        <button onclick="adopt('Mittens')" class="add-to-cart" data-id="88" data-name="Mittens" data-price="350">Adopt Me</button>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="pet">
+                                        <img src="data/cat9.jpg" alt="Cat 9">
+                                        <div class="pet-info">
+                                            <h3>Shadow</h3>
+                                            <p>Black cat with bright green eyes.</p>
+                                            <p>Female, 6 months old</p>
+                                        </div>
+                                        <button onclick="adopt('Shadow')" class="add-to-cart" data-id="87" data-name="Shadow" data-price="300">Adopt Me</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br>
+                    <div class="carousel-container">
+                        <div class="carousel-container" id="others-carousel">
+                            <h2>Meet our other friends..</h2>
+                            <br>
+                            <div class="carousel">
+                                <div class="carousel-item">
+                                    <div class="pet">
+                                        <img src="data/ss.jpg" alt="Sloth 1">
+                                        <div class="pet-info">
+                                            <h3>Sleepy</h3>
+                                            <p>Relaxed and calm sloth looking for a cozy tree.</p>
+                                            <p> Male, 3 year old</p>
+                                        </div>
+                                        <button onclick="adopt('Sleepy')" class="add-to-cart" data-id="89" data-name="Sleepy" data-price="700">Adopt Me</button>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="pet">
+                                        <img src="data/bb.jpg" alt="Bunny 1">
+                                        <div class="pet-info">
+                                            <h3>Bouncy</h3>
+                                            <p>Energetic bunny ready to hop into your heart.</p>
+                                            <p>Male, 4 months old.</p>
+                                        </div>
+                                        <button onclick="adopt('Bouncy')" class="add-to-cart" data-id="88" data-name="Bouncy" data-price="450">Adopt Me</button>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="pet">
+                                        <img src="data/ar.jpg" alt="Rabbit 1">
+                                        <div class="pet-info">
+                                            <h3>Rabii</h3>
+                                            <p>Cute bunny hopping into your heart.</p>
+                                            <p>Female, 2 years and 9 months old.</p>
+                                        </div>
+                                        <button onclick="adopt('Rabii')" class="add-to-cart" data-id="87" data-name="Rabii" data-price="450">Adopt Me</button>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="pet">
+                                        <img src="data/pp.jpg" alt="Parrot 1">
+                                        <div class="pet-info">
+                                            <h3>Mitu</h3>
+                                            <p>Colorful parrot seeking a companion.</p>
+                                            <p> Male, 9 months old.</p>
+                                        </div>
+                                        <button onclick="adopt('Mitu')" class="add-to-cart" data-id="86" data-name="Mitu" data-price="150">Adopt Me</button>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="pet">
+                                        <img src="data/hh.jpg" alt="Hamster 1">
+                                        <div class="pet-info">
+                                            <h3>Happy</h3>
+                                            <p>Small and adorable hamster ready to explore.</p>
+                                            <p>Male, 3 months old</p>
+                                        </div>
+                                        <button onclick="adopt('Happy')" class="add-to-cart" data-id="85" data-name="Happy" data-price="200">Adopt Me</button>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="pet">
+                                        <img src="data/turtle.jpg" alt="Turtle 1">
+                                        <div class="pet-info">
+                                            <h3>Shelly</h3>
+                                            <p>Red-eared slider turtle, loves swimming.</p>
+                                            <p>Female, 2 years old</p>
+                                        </div>
+                                        <button onclick="adopt('Shelly')" class="add-to-cart" data-id="84" data-name="Shelly" data-price="300">Adopt Me</button>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="pet">
+                                        <img src="data/guinea.jpg" alt="Guinea Pig 1">
+                                        <div class="pet-info">
+                                            <h3>Peanut</h3>
+                                            <p>Guinea pig who loves vegetables and cuddles.</p>
+                                            <p>Male, 8 months old</p>
+                                        </div>
+                                        <button onclick="adopt('Peanut')" class="add-to-cart" data-id="83" data-name="Peanut" data-price="250">Adopt Me</button>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="pet">
+                                        <img src="data/ferret.jpg" alt="Ferret 1">
+                                        <div class="pet-info">
+                                            <h3>Bandit</h3>
+                                            <p>Playful ferret with mischievous personality.</p>
+                                            <p>Male, 1 year old</p>
+                                        </div>
+                                        <button onclick="adopt('Bandit')" class="add-to-cart" data-id="82" data-name="Bandit" data-price="500">Adopt Me</button>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="pet">
+                                        <img src="data/lizard.jpg" alt="Lizard 1">
+                                        <div class="pet-info">
+                                            <h3>Spike</h3>
+                                            <p>Bearded dragon, calm and easy to care for.</p>
+                                            <p>Male, 6 months old</p>
+                                        </div>
+                                        <button onclick="adopt('Spike')" class="add-to-cart" data-id="81" data-name="Spike" data-price="400">Adopt Me</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <BR>
+                
+                <div class="right-content">
+                    <div class="testimonial-container" id="customer-feedback">
+                        <div class="tips">
+                            <h2>What Our Customers Say</h2>
+                            <div class="testimonial">
+                                <img src="data/u1.png" alt="User 1">
+                                <p>"I found my best friend here! The adoption process was smooth, and the staff was incredibly helpful."</p>
+                                <p><strong>- Sarah M., Dog Owner</strong></p>
+                            </div>
+                            <div class="testimonial">
+                                <img src="data/u2.png" alt="User 2">
+                                <p>"Adopting from this website was one of the best decisions I've made. My pet brings so much joy into my life!"</p>
+                                <p><strong>- John D., Cat Owner</strong></p>
+                            </div>
+                            <div class="testimonial">
+                                <img src="data/u3.png" alt="User 3">
+                                <p>"The veterinary services are top-notch! They've been taking care of my pets for over 2 years now."</p>
+                                <p><strong>- Emily R., Multiple Pet Owner</strong></p>
+                            </div>
+                            <div class="testimonial">
+                                <img src="data/u4.png" alt="User 4">
+                                <p>"Great selection of pet supplies and the delivery service is super convenient. Highly recommended!"</p>
+                                <p><strong>- Michael K., Bird Owner</strong></p>
+                            </div>
+                            <div class="testimonial">
+                                <img src="data/u5.png" alt="User 5">
+                                <p>"The pet training classes transformed my puppy into a well-behaved companion. Amazing results!"</p>
+                                <p><strong>- Lisa T., First-time Dog Owner</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <br>
+                <div class="tips" id="pet-tips">
+                    <h2>Pet Care Tips</h2>
+                    <br>
+                    <div class="tip-container" >
+                        <div class="tip">
+                            <p>Provide fresh water to your pets every day to keep them hydrated.</p>
+                        </div>
+                        <div class="tip">
+                            <p>Regularly groom your pets to maintain their coat health and prevent matting.</p>
+                        </div>
+                        <div class="tip">
+                            <p>Ensure your pets get regular exercise to keep them healthy and happy.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="video-container">
+                    <h2>Watch Our Adoption Stories</h2>
+                    <iframe width="100%" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+                </div>
+
+                <div class="social-feed">
+                    <h2>Follow Us on Social Media</h2>
+
+                    <div class="social-media-icons">
+                        <a href="https://www.facebook.com/adoptafurrybuddy" target="_blank"><img src="data/fb.png" alt="Facebook"></a>
+                        <a href="https://www.twitter.com/adoptafurrybuddy" target="_blank"><img src="data/twit.png" alt="Twitter"></a>
+                        <a href="https://www.instagram.com/adoptafurrybuddy" target="_blank"><img src="data/ins.png" alt="Instagram"></a>
+                        <a href="https://www.whatsapp.com/adoptafurrybuddy" target="_blank"><img src="data/wha.png" alt="Whatsapp"></a>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <p>Contact Us: contact@adoptafurrybuddy.com</p>
+    </footer>
+
+    <!-- Configuration -->
+    <script>
+        // API Configuration - Change this to your deployed backend URL
+        const API_BASE_URL = 'http://localhost:8080/api';
+        // For production, use: const API_BASE_URL = 'https://your-render-app.onrender.com/api';
+    </script>
+
+    <!-- User Authentication Script -->
+    <script src="js/auth.js"></script>
+    
+    <!-- Main Application Scripts -->
+    <script>
+        function redirectToAdoptionDetails(name, price, image) {
+            // Pass pet details to the adoption details page via URL parameters
+            if (image) {
+                window.location.href = `adoption_details.html?name=${name}&price=${price}&image=${image}`;
+            } else {
+                window.location.href = `adoption_details.html?name=${name}&price=${price}`;
+            }
+        }
+        
+        function adopt(name) {
+            // Check if user is logged in
+            if (!isLoggedIn()) {
+                alert("Please login to adopt a pet!");
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            // Simple adoption function
+            alert(`Thank you for your interest in adopting ${name}! Please contact us for more details.`);
+        }
+
+        // Function to check login status
+        function isLoggedIn() {
+            return localStorage.getItem('user') !== null;
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            updateUserInterface();
+            updateCartCount();
+        });
+
+        function updateUserInterface() {
+            const user = JSON.parse(localStorage.getItem('user'));
+            const userInfo = document.getElementById('userInfo');
+            const loginLogout = document.getElementById('loginLogout');
+            const registerLink = document.getElementById('registerLink');
+
+            if (user) {
+                userInfo.textContent = `Welcome, ${user.username}!`;
+                userInfo.classList.add('logged-in');
+                loginLogout.textContent = 'Logout';
+                loginLogout.href = '#';
+                loginLogout.onclick = function() {
+                    logout();
+                    return false;
+                };
+                registerLink.style.display = 'none';
+            } else {
+                userInfo.classList.remove('logged-in');
+                loginLogout.textContent = 'Login';
+                loginLogout.href = 'login.html';
+                loginLogout.onclick = null;
+                registerLink.style.display = 'inline';
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('user');
+            alert('Logged out successfully!');
+            updateUserInterface();
+        }
+
+        function updateCartCount() {
+            let cart = localStorage.getItem('cart');
+            cart = cart ? JSON.parse(cart) : [];
+            const cartCount = cart.length;
+            document.getElementById('cart-count').innerText = cartCount;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdoptaFurryBuddy - Contact Us</title>
+    <link rel="stylesheet" href="common.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f0f0;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 40px;
+            border-radius: 10px;
+            background-color: #744f32;
+        }
+
+        h1 {
+            color: #fff;
+            font-size: 2.5em;
+        }
+
+        h2 {
+            color: #4CAF50;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        nav {
+            background-color: #382e27;
+            padding: 10px 50px;
+            text-align: center;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        nav .left-links,
+        nav .right-links {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.2em;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .contact-info,
+        .contact-form {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #f8f8f8;
+            border-radius: 8px;
+            border-left: 4px solid #4CAF50;
+        }
+
+        .info-item h3 {
+            color: #744f32;
+            margin-bottom: 10px;
+        }
+
+        .info-item p {
+            margin: 5px 0;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: bold;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #4CAF50;
+        }
+
+        textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: #45a049;
+        }
+
+        .submit-btn:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .location-section {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .map-container {
+            width: 100%;
+            height: 400px;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-top: 20px;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .social-media-section {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .social-media-icons {
+            margin-top: 20px;
+        }
+
+        .social-media-icons a {
+            display: inline-block;
+            margin: 0 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .social-media-icons img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+
+        .social-media-icons a:hover {
+            transform: scale(1.1);
+        }
+
+        .error-message {
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 12px;
+            border-radius: 6px;
+            margin: 10px 0;
+            display: none;
+        }
+
+        .success-message {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 12px;
+            border-radius: 6px;
+            margin: 10px 0;
+            display: none;
+        }
+
+        .loading {
+            display: none;
+        }
+
+        footer {
+            background-color: #382e27;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 30px;
+            border-radius: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Contact Us</h1>
+            <p style="color: #fff; margin-top: 10px;">We'd love to hear from you! Get in touch with our team.</p>
+        </div>
+
+        <nav>
+            <div class="left-links">
+                <a href="index.html">Home</a>
+                <a href="contact.html">Contact Us</a>
+                <a href="shop.html">Shop Items</a>
+                <a href="search.html">Search for Pets</a>
+                <a href="services.html">Our Services</a>
+            </div>
+            <div class="right-links">
+                <a href="login.html">Login</a>
+                <a href="register.html">Register</a>
+                <a href="cart.html">Cart <span id="cart-count">0</span></a>
+            </div>
+        </nav>
+
+        <div class="contact-content">
+            <div class="contact-info">
+                <h2>Get In Touch</h2>
+                
+                <div class="info-item">
+                    <h3>📧 Email Us</h3>
+                    <p>adoptafurrybuddy@gmail.com</p>
+                    <p>info@adoptafurrybuddy.com</p>
+                </div>
+
+                <div class="info-item">
+                    <h3>📞 Call Us</h3>
+                    <p>+91 1234567890</p>
+                    <p>+91 9876543210</p>
+                    <p>Available: Mon-Fri, 9 AM - 6 PM</p>
+                </div>
+
+                <div class="info-item">
+                    <h3>📍 Visit Us</h3>
+                    <p>AdoptaFurryBuddy Center</p>
+                    <p>Loni Kalbhor, Pune-412201</p>
+                    <p>Maharashtra, India</p>
+                </div>
+
+                <div class="info-item">
+                    <h3>🕒 Opening Hours</h3>
+                    <p><strong>Monday - Friday:</strong> 9:00 AM - 6:00 PM</p>
+                    <p><strong>Saturday:</strong> 10:00 AM - 4:00 PM</p>
+                    <p><strong>Sunday:</strong> Closed</p>
+                </div>
+            </div>
+
+            <div class="contact-form">
+                <h2>Send Us A Message</h2>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" required placeholder="Your full name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" placeholder="Your phone number">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">Subject *</label>
+                        <input type="text" id="subject" name="subject" required placeholder="What is this about?">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" required placeholder="Tell us how we can help you..."></textarea>
+                    </div>
+
+                    <div class="error-message" id="errorMessage"></div>
+                    <div class="success-message" id="successMessage"></div>
+
+                    <button type="submit" class="submit-btn" id="submitBtn">
+                        <span class="normal">Send Message</span>
+                        <span class="loading">Sending...</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div class="location-section">
+            <h2>Our Location</h2>
+            <p>Visit us at our adoption center to meet our wonderful pets in person!</p>
+            <div class="map-container">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15135.1441429871!2d74.00507494671845!3d18.493348553441134!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2e8015a3da997%3A0x6ea28cf1924e2860!2sMIT%20ADT%20UNIVERSITY%2C%20Loni%20Kalbhor%2C%20Maharashtra%20412201!5e0!3m2!1sen!2sin!4v1711631056784!5m2!1sen!2sin" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+
+        <div class="social-media-section">
+            <h2>Connect With Us</h2>
+            <p>Follow us on social media for updates on our pets and adoption events!</p>
+            <div class="social-media-icons">
+                <a href="https://www.facebook.com/adoptafurrybuddy" target="_blank">
+                    <img src="data/fb.png" alt="Facebook">
+                </a>
+                <a href="https://www.twitter.com/adoptafurrybuddy" target="_blank">
+                    <img src="data/twit.png" alt="Twitter">
+                </a>
+                <a href="https://www.instagram.com/adoptafurrybuddy" target="_blank">
+                    <img src="data/ins.png" alt="Instagram">
+                </a>
+                <a href="https://www.whatsapp.com/adoptafurrybuddy" target="_blank">
+                    <img src="data/wha.png" alt="WhatsApp">
+                </a>
+            </div>
+        </div>
+
+        <footer>
+            <p>Contact Us: contact@adoptafurrybuddy.com</p>
+        </footer>
+    </div>
+
+    <!-- Configuration -->
+    <script>
+        const API_BASE_URL = 'http://localhost:8080/api';
+    </script>
+
+    <!-- Auth Script -->
+    <script src="js/auth.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Update cart count
+            updateCartCount();
+            
+            // Handle contact form submission
+            document.getElementById('contactForm').addEventListener('submit', handleContactForm);
+        });
+
+        async function handleContactForm(event) {
+            event.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const errorDiv = document.getElementById('errorMessage');
+            const successDiv = document.getElementById('successMessage');
+            const normalSpan = submitBtn.querySelector('.normal');
+            const loadingSpan = submitBtn.querySelector('.loading');
+            
+            // Clear previous messages
+            errorDiv.style.display = 'none';
+            successDiv.style.display = 'none';
+            
+            // Get form data
+            const formData = new FormData(event.target);
+            const contactData = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                phone: formData.get('phone'),
+                subject: formData.get('subject'),
+                message: formData.get('message'),
+                submittedAt: new Date().toISOString()
+            };
+            
+            // Show loading state
+            submitBtn.disabled = true;
+            normalSpan.style.display = 'none';
+            loadingSpan.style.display = 'inline';
+            
+            try {
+                // Simulate API call
+                await new Promise(resolve => setTimeout(resolve, 2000));
+                
+                // Store message locally (in real app, this would be sent to backend)
+                const messages = JSON.parse(localStorage.getItem('contactMessages') || '[]');
+                messages.push(contactData);
+                localStorage.setItem('contactMessages', JSON.stringify(messages));
+                
+                successDiv.textContent = 'Thank you for your message! We will get back to you within 24 hours.';
+                successDiv.style.display = 'block';
+                
+                // Reset form
+                event.target.reset();
+                
+            } catch (error) {
+                errorDiv.textContent = 'Failed to send message. Please try again or call us directly.';
+                errorDiv.style.display = 'block';
+            } finally {
+                // Reset loading state
+                submitBtn.disabled = false;
+                normalSpan.style.display = 'inline';
+                loadingSpan.style.display = 'none';
+            }
+        }
+
+        function updateCartCount() {
+            let cart = localStorage.getItem('cart');
+            cart = cart ? JSON.parse(cart) : [];
+            const cartCount = cart.length;
+            document.getElementById('cart-count').innerText = cartCount;
+        }
+    </script>
+</body>
+</html>

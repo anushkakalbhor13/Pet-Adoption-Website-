@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdoptaFurryBuddy - Pet Shop</title>
+    <link rel="stylesheet" href="common.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f0f0;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 40px;
+            border-radius: 10px;
+            background-color: #744f32;
+        }
+
+        h1 {
+            color: #fff;
+            font-size: 2.5em;
+        }
+
+        nav {
+            background-color: #382e27;
+            padding: 10px 50px;
+            text-align: center;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        nav .left-links,
+        nav .right-links {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.2em;
+        }
+
+        .shop-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .product-card {
+            background-color: #fff;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            border-radius: 8px;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+
+        .product-info h3 {
+            color: #744f32;
+            margin-bottom: 10px;
+        }
+
+        .product-price {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #4CAF50;
+            margin: 10px 0;
+        }
+
+        .add-to-cart-btn {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+
+        .add-to-cart-btn:hover {
+            background-color: #45a049;
+        }
+
+        .category-filter {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .filter-btn {
+            background-color: #744f32;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            margin: 0 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background-color: #4CAF50;
+        }
+
+        footer {
+            background-color: #382e27;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 30px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Pet Shop</h1>
+            <p style="color: #fff; margin-top: 10px;">Everything your furry friend needs!</p>
+        </div>
+
+        <nav>
+            <div class="left-links">
+                <a href="index.html">Home</a>
+                <a href="contact.html">Contact Us</a>
+                <a href="shop.html">Shop Items</a>
+                <a href="search.html">Search for Pets</a>
+                <a href="services.html">Our Services</a>
+            </div>
+            <div class="right-links">
+                <a href="login.html">Login</a>
+                <a href="register.html">Register</a>
+                <a href="cart.html">Cart <span id="cart-count">0</span></a>
+            </div>
+        </nav>
+
+        <div class="category-filter">
+            <button class="filter-btn active" onclick="filterProducts('all')">All Products</button>
+            <button class="filter-btn" onclick="filterProducts('food')">Food & Treats</button>
+            <button class="filter-btn" onclick="filterProducts('toys')">Toys</button>
+            <button class="filter-btn" onclick="filterProducts('accessories')">Accessories</button>
+            <button class="filter-btn" onclick="filterProducts('health')">Health & Care</button>
+        </div>
+
+        <div class="shop-grid" id="productGrid">
+            <!-- Products will be loaded here -->
+        </div>
+
+        <footer>
+            <p>Contact Us: contact@adoptafurrybuddy.com</p>
+        </footer>
+    </div>
+
+    <script>
+        const products = [
+            // Food & Treats
+            { id: 1, name: "Premium Dog Food", price: 1200, image: "data/bfood.jpg", category: "food", description: "High-quality nutrition for your dog" },
+            { id: 2, name: "Organic Cat Food", price: 950, image: "data/catfood.jpg", category: "food", description: "Natural ingredients for healthy cats" },
+            { id: 3, name: "Bird Seed Mix", price: 180, image: "data/birdseed.jpg", category: "food", description: "Nutritious seed blend for all birds" },
+            { id: 4, name: "Rabbit Pellets", price: 220, image: "data/rabbitfood.jpg", category: "food", description: "High-fiber pellets for rabbits" },
+            { id: 5, name: "Fish Flakes", price: 150, image: "data/fishfood.jpg", category: "food", description: "Premium tropical fish food" },
+            { id: 6, name: "Dog Treats", price: 280, image: "data/dogtreats.jpg", category: "food", description: "Delicious training treats" },
+            { id: 7, name: "Cat Treats", price: 250, image: "data/cattreats.jpg", category: "food", description: "Crunchy salmon-flavored treats" },
+
+            // Accessories
+            { id: 8, name: "Cat Food Bowl", price: 350, image: "data/co.jpg", category: "accessories", description: "Stainless steel feeding bowl" },
+            { id: 9, name: "Dog Collar", price: 450, image: "data/belt.jpg", category: "accessories", description: "Comfortable and stylish collar" },
+            { id: 10, name: "Pet Clothing", price: 600, image: "data/clothes.jpg", category: "accessories", description: "Warm and fashionable pet clothes" },
+            { id: 11, name: "Bird Cage", price: 2500, image: "data/cage.jpg", category: "accessories", description: "Spacious and comfortable bird home" },
+            { id: 12, name: "Pet Tent", price: 800, image: "data/tent.jpeg", category: "accessories", description: "Cozy outdoor shelter for pets" },
+            { id: 13, name: "Dog Leash", price: 300, image: "data/belt2.jpg", category: "accessories", description: "Strong and reliable leash" },
+            { id: 14, name: "Cat Scratching Post", price: 750, image: "data/scratchpost.jpg", category: "accessories", description: "Multi-level scratching tower" },
+            { id: 15, name: "Pet Carrier", price: 1200, image: "data/carrier.jpg", category: "accessories", description: "Safe travel carrier for pets" },
+            { id: 16, name: "Dog Bed", price: 900, image: "data/dogbed.jpg", category: "accessories", description: "Orthopedic memory foam bed" },
+            { id: 17, name: "Water Fountain", price: 650, image: "data/waterfountain.jpg", category: "accessories", description: "Automatic pet water dispenser" },
+            { id: 18, name: "Aquarium", price: 3500, image: "data/aquarium.jpg", category: "accessories", description: "20-gallon fish tank with filter" },
+
+            // Toys
+            { id: 19, name: "Rope Toy", price: 180, image: "data/ropetoy.jpg", category: "toys", description: "Durable rope toy for dogs" },
+            { id: 20, name: "Feather Wand", price: 120, image: "data/feathertoy.jpg", category: "toys", description: "Interactive toy for cats" },
+            { id: 21, name: "Squeaky Ball", price: 80, image: "data/ball.jpg", category: "toys", description: "Rubber ball with squeaker" },
+            { id: 22, name: "Puzzle Feeder", price: 350, image: "data/puzzlefeeder.jpg", category: "toys", description: "Mental stimulation feeding toy" },
+            { id: 23, name: "Laser Pointer", price: 150, image: "data/laser.jpg", category: "toys", description: "Interactive laser toy for cats" },
+            { id: 24, name: "Chew Bone", price: 200, image: "data/chewbone.jpg", category: "toys", description: "Long-lasting dental chew" },
+            { id: 25, name: "Catnip Mouse", price: 60, image: "data/catnipmonse.jpg", category: "toys", description: "Soft mouse toy with catnip" },
+
+            // Health & Care
+            { id: 26, name: "Pet Sanitizer", price: 200, image: "data/sanitizer.jpg", category: "health", description: "Keep your pet clean and healthy" },
+            { id: 27, name: "Flea Shampoo", price: 280, image: "data/shampoo.jpg", category: "health", description: "Natural flea prevention shampoo" },
+            { id: 28, name: "Nail Clippers", price: 150, image: "data/nailclippers.jpg", category: "health", description: "Professional pet nail trimmers" },
+            { id: 29, name: "Ear Cleaner", price: 180, image: "data/earcleaner.jpg", category: "health", description: "Gentle ear cleaning solution" },
+            { id: 30, name: "Dental Chews", price: 320, image: "data/dentalchews.jpg", category: "health", description: "Promote dental health" },
+            { id: 31, name: "Vitamin Supplements", price: 450, image: "data/vitamins.jpg", category: "health", description: "Daily multivitamins for pets" },
+            { id: 32, name: "First Aid Kit", price: 600, image: "data/firstaid.jpg", category: "health", description: "Emergency medical supplies" },
+            { id: 33, name: "Grooming Brush", price: 220, image: "data/brush.jpg", category: "health", description: "Professional grooming brush" }
+        ];
+
+        function displayProducts(productsToShow) {
+            const grid = document.getElementById('productGrid');
+            grid.innerHTML = '';
+            
+            productsToShow.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                productCard.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}" class="product-image">
+                    <div class="product-info">
+                        <h3>${product.name}</h3>
+                        <p>${product.description}</p>
+                        <div class="product-price">₹${product.price}</div>
+                        <button class="add-to-cart-btn" onclick="addToShopCart('${product.name}', ${product.price})">
+                            Add to Cart
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(productCard);
+            });
+        }
+
+        function filterProducts(category) {
+            // Update active filter button
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Filter and display products
+            const filteredProducts = category === 'all' 
+                ? products 
+                : products.filter(product => product.category === category);
+            
+            displayProducts(filteredProducts);
+        }
+
+        function addToShopCart(name, price) {
+            // Get existing cart
+            let cart = localStorage.getItem('cart');
+            cart = cart ? JSON.parse(cart) : [];
+            
+            // Add item
+            cart.push({ name, price });
+            localStorage.setItem('cart', JSON.stringify(cart));
+            
+            // Update cart count
+            updateCartCount();
+            
+            // Show confirmation
+            alert(`${name} added to cart!`);
+        }
+
+        function updateCartCount() {
+            let cart = localStorage.getItem('cart');
+            cart = cart ? JSON.parse(cart) : [];
+            const cartCount = cart.length;
+            document.getElementById('cart-count').innerText = cartCount;
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            displayProducts(products);
+            updateCartCount();
+        });
+    </script>
+</body>
+</html>

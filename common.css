@@ -1,0 +1,17 @@
+h1{
+    color:#744f32;
+    text-align: center;
+}
+h2, h3 {
+    text-align: center;
+    color: #4CAF50;
+}
+
+img {
+    display: block;
+    margin: 0 auto;
+    width:350px;
+    height: 500px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
